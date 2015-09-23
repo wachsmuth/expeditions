@@ -89,6 +89,16 @@ public class Game {
 		return true;
 	}
 	
+    public ArrayList<ExpeditionCard> getCardsOfTypeInHand(CardType ct){
+    	ArrayList<ExpeditionCard> list = new ArrayList<>();
+    	for (ExpeditionCard ec hand.getDeck()){
+    		if (ec.getType() == ct){
+    			list.add(ec);
+    		}
+    	}
+    	return list;
+    }
+	
 	public static Boolean changeRations(int change){
 		rations = rations + change;
 		if (rations < 0){
