@@ -1,5 +1,9 @@
 package gamestate;
 
+import helpers.CardType;
+
+import java.util.ArrayList;
+
 public class Game {
 	
 	private static int morale = 0;
@@ -60,12 +64,12 @@ public class Game {
 		actions =+ actions;
 	}
 	
-	public static void getActions(){
+	public static int getActions(){
 		return actions;
 	}
 	
 	public static void setActions(int a){
-		actions = max(0, a);
+		actions = Math.max(0, a);
 	}
 	
 	public static void printActions(){
@@ -97,9 +101,9 @@ public class Game {
 		return true;
 	}
 	
-    public ArrayList<ExpeditionCard> getCardsOfTypeInHand(CardType ct){
+    public static ArrayList<ExpeditionCard> getCardsOfTypeInHand(CardType ct){
     	ArrayList<ExpeditionCard> list = new ArrayList<>();
-    	for (ExpeditionCard ec hand.getDeck()){
+    	for (ExpeditionCard ec : hand.getDeck()){
     		if (ec.getType() == ct){
     			list.add(ec);
     		}

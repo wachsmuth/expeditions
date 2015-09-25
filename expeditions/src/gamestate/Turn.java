@@ -1,5 +1,8 @@
 package gamestate;
 
+import java.util.ArrayList;
+import helpers.CardType;
+
 public class Turn {
 
 	public static void conductTurn(){
@@ -15,8 +18,12 @@ public class Turn {
 	}
 	
 	public static void playActions(){
-		while (Game.getActions > 0 && Game.getCardsOfTypeInHand(Action) > 0){
+		while (Game.getActions() > 0 && Game.getCardsOfTypeInHand(CardType.ACTION).size() > 0){
+			ArrayList<ExpeditionCard> possibleCards = Game.getCardsOfTypeInHand(CardType.ACTION);
 			ArrayList<String> options = new ArrayList<>();
+			for (ExpeditionCard ec : possibleCards){
+				
+			}
 		}
 	}
 }
