@@ -1,8 +1,9 @@
 package gamestate;
 
-import java.util.ArrayList;
 import helpers.CardType;
 import helpers.InputLoop;
+
+import java.util.ArrayList;
 
 public class Turn {
 
@@ -13,6 +14,16 @@ public class Turn {
 		Game.setActions(1);
 		playActions();
 		Game.discardCardsOfTypeInPlay(CardType.ACTION);
+		//play troubles
+		for (ExpeditionCard c : Game.getCardsOfTypeInHand(CardType.TROUBLE)){
+			c.play();
+		}
+		//play travel cards
+		int travelSoFar = Game.getTravel();
+		for (ExpeditionCard c : Game.getCardsOfTypeInHand(CardType.TRAVEL)){
+			c.play();
+		}
+		System.out.println("You play all your travel cards. You travel " + (Game.getTravel() - travelSoFar) + " this turn.");
 		if (Game.getRations() == 0){
 			//TODO
 		}

@@ -188,7 +188,28 @@ public class Game {
 		return morale;
 	}
 
-	public static Boolean changeMorale(int change) {
+	
+	
+	public static int getAppeal() {
+		return appeal;
+	}
+
+	public static void setAppeal(int appeal) {
+		Game.appeal = appeal;
+	}
+
+	public static int getTravel() {
+		return travel;
+	}
+
+	public static boolean addTravel(int change) {
+		if (change > 0){
+			travel = travel + change;
+		}
+		return false;
+	}
+
+	public static boolean changeMorale(int change) {
 		morale = morale + change;
 		if (morale < 0) {
 			morale = 0;
