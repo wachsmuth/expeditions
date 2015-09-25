@@ -27,4 +27,9 @@ public class Porter implements ExpeditionCard {
 		Game.gainAction();
 	}
 
+	@Override
+	public int getCost() {
+		return 1;
+	}
+
 }

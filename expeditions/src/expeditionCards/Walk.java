@@ -26,4 +26,9 @@ public class Walk implements ExpeditionCard{
 		Game.changeTravel(1);
 	}
 
+	@Override
+	public int getCost() {
+		return 0;
+	}
+
 }
