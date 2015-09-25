@@ -3,6 +3,7 @@ package gamestate;
 import eventCards.MoraleFalters;
 import eventCards.Respite;
 import eventCards.Rodents;
+import eventCards.Snakebite;
 import expeditionCards.ExpeditionLeader;
 import expeditionCards.Porter;
 import expeditionCards.Walk;
@@ -28,6 +29,7 @@ public class InitialSetup {
 		deck.addCard(new Respite());
 		deck.addCard(new Respite());
 		deck.addCard(new Rodents());
+		deck.addCard(new Snakebite());
 		return deck;
 	}
 	
