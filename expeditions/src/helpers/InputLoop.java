@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class InputLoop {
 
     public static int inputLoop(String... options) {
-        String answerString;
         Scanner inputScanner = new Scanner(System.in);
         System.out.println("Valid input is: ");
         int j = 0;
@@ -25,7 +24,6 @@ public class InputLoop {
                 userInput = Integer.parseInt(userInputRaw);
                 for (int i : noOfOptions) {
                     if (userInput == i) {
-                        // answerString = options.get(i);
                         break inputloop;
                     }
                 }

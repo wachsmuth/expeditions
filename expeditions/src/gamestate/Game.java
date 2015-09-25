@@ -61,7 +61,21 @@ public class Game {
 	}
 
 	public static void gainAction(){
-		actions =+ actions;
+		actions =+ 1;
+	}
+	
+	public static void loseAction(){
+		actions =- 1;
+		if (actions < 0){
+			actions = 0;
+		}
+	}
+	
+	public static void modifyActions(int change){
+		actions =+ change;
+		if (actions < 0){
+			actions = 0;
+		}
 	}
 	
 	public static int getActions(){

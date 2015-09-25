@@ -9,8 +9,8 @@ public class Turn {
 	public static void conductTurn(){
 		// play event
 		Game.playEvent();
-		
-		
+		// play hand
+		playActions();
 		if (Game.getRations() == 0){
 			
 		}
@@ -29,7 +29,15 @@ public class Turn {
 				options.add(ec.getName());
 			}
 			options.add("End actions.");
-			InputLoop.inputLoop("Choose a card to play or end actions.", options);
+			int userInput = InputLoop.inputLoop("Choose a card to play or end actions.", options);
+			if (userInput == options.size()){
+				Game.setActions(0);
+			}
+			else {
+				possibleCards.get(userInput).play();
+				Game.modifyActions(-1);
+			}
 		}
+		System.out.println("Action phase is over.");
 	}
 }
