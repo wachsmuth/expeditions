@@ -3,6 +3,7 @@ package gamestate;
 import eventCards.MoraleFalters;
 import eventCards.Respite;
 import eventCards.Rodents;
+import expeditionCards.ExpeditionLeader;
 import expeditionCards.Porter;
 import expeditionCards.Walk;
 
@@ -18,6 +19,7 @@ public class InitialSetup {
 		Game.gainCard(new Walk());
 		Game.gainCard(new Walk());
 		Game.gainCard(new Walk());
+		Game.gainCard(new ExpeditionLeader());
 	}
 	
 	public static Deck<EventCard> createEventDeck(){

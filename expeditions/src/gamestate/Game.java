@@ -97,6 +97,12 @@ public class Game {
 		}
 	}
 
+	
+	
+	public static ArrayList<ExpeditionCard> getHand() {
+		return hand;
+	}
+
 	public static void discardHand() {
 		for (ExpeditionCard e : hand) {
 			expeditionDiscardPile.addCard(e);
@@ -221,6 +227,15 @@ public class Game {
 		morale = morale + change;
 		if (morale < 0) {
 			morale = 0;
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean changeAppeal(int change) {
+		appeal = appeal + change;
+		if (appeal < 0) {
+			appeal = 0;
 			return false;
 		}
 		return true;

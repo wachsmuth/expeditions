@@ -1,5 +1,7 @@
 package helpers;
 
+import gamestate.ExpeditionCard;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,7 +44,18 @@ public class InputLoop {
     	System.out.println(question);
     	return inputLoop(arguments)-1;
     }
-    /*
+    
+    public static ExpeditionCard cardInputLoop(String question, ArrayList<? extends ExpeditionCard> cardArray) {
+        String[] countries = new String[cardArray.size()];
+        int i = 0;
+        for (ExpeditionCard c : cardArray) {
+            countries[i] = c.getName();
+            i++;
+        }
+        System.out.println(question);
+        return cardArray.get(inputLoop(countries) - 1);
+    }
+    
     public static <T> T inputLoop(ArrayList<T> stuff) {
         Scanner inputScanner = new Scanner(System.in);
         System.out.println("Valid input is: ");
@@ -50,7 +63,7 @@ public class InputLoop {
             System.out.println(i + " " + stuff.get(i));
         }
         int userInput;
-        inputloop:
+        //  inputloop:
         while (true) {
             try {
                 System.out.print("Enter your input: ");
@@ -66,6 +79,6 @@ public class InputLoop {
                 //Do nothing. We keep trying.
             }
         }
-    }*/
+    }
 	
 }
