@@ -56,8 +56,8 @@ public class Turn {
 			}
 			else {
 				ExpeditionCard c = possibleCards.get(userInput);
-				c.play();
 				Game.addCardToPlay(c);
+				c.play();				
 				Game.modifyActions(-1);
 				Game.printState();
 			}

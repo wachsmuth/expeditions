@@ -1,6 +1,7 @@
 package gamestate;
 
 import helpers.CardType;
+import helpers.InputLoop;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -122,6 +123,13 @@ public class Game {
 		hand.remove(c);
 		expeditionDiscardPile.addCard(c);
 	}
+	
+	public static void trashCard(ExpeditionCard c){
+		expeditionDeck.removeCard(c);
+		expeditionDiscardPile.removeCard(c);
+		hand.remove(c);
+		cardsInPlay.remove(c);
+	}
 
 	public static void addCardToPlay(ExpeditionCard c) {
 		hand.remove(c);
@@ -226,6 +234,26 @@ public class Game {
 			}
 		}
 		return list;
+	}
+	
+	public static ArrayList<ExpeditionCard> getCardsOfTypeInDiscard(CardType ct) {
+		ArrayList<ExpeditionCard> list = new ArrayList<>();
+		for (ExpeditionCard ec : expeditionDiscardPile.getDeck()) {
+			if (ec.getType() == ct) {
+				list.add(ec);
+			}
+		}
+		return list;
+	}
+	
+	public static void killCharacter(){ //choose a character from the discard pile. This character dies and is removed from the game.
+		if (getCardsOfTypeInDiscard(CardType.ACTION).size() > 0){
+			int i = (InputLoop.inputLoop("Choose a character to die.", getCardsOfTypeInDiscard(CardType.ACTION)));
+			trashCard(getCardsOfTypeInDiscard(CardType.ACTION).get(i));
+		}
+		else {
+			System.out.println("Miraculously, no one dies!");
+		}
 	}
 
 	public static Boolean changeRations(int change) {
