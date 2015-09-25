@@ -3,6 +3,7 @@ package gamestate;
 import helpers.CardType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Game {
 
@@ -16,6 +17,7 @@ public class Game {
 	private static Deck<ExpeditionCard> expeditionDeck = new Deck<>();
 	private static Deck<ExpeditionCard> expeditionDiscardPile = new Deck<>();
 	private static ArrayList<ExpeditionCard> hand = new ArrayList<>();
+	private static ArrayList<ExpeditionCard> cardsInPlay = new ArrayList<>();
 
 	public Game() {
 
@@ -38,7 +40,8 @@ public class Game {
 
 	public static void playEvent() {
 		EventCard c = drawFromEventDeck();
-		c.playEvent();
+		System.out.println("Event played: " + c.getName() + ": " + c.getDescription());
+		c.playEvent();		
 		eventDeck.removeCard(c);
 		eventDiscardPile.addCard(c);
 	}
@@ -48,10 +51,32 @@ public class Game {
 				+ " Appeal: " + appeal + " Travel: " + travel);
 	}
 
-	public static void printHand() {
-		for (Object c : hand) {
-			System.out.println(((Card) c).getName());
+	public static void printHand() { //prints entire contents of hand on a single line
+		ArrayList<String> strings = new ArrayList<>();
+
+		for (ExpeditionCard c : hand) {
+			strings.add(c.getName());
 		}
+		Collections.sort(strings); //if multiples exist, print those
+		
+		System.out.print("Your hand:");
+		for (int i = 0; i < strings.size(); i++){
+			int j = i;
+			int count = 0;
+			while (j < strings.size() && strings.get(i).equals(strings.get(j))){
+				count++;
+				j++;
+			}
+			if (count > 1){
+				System.out.print(" " + count + "x");
+			}
+			System.out.print(" " + strings.get(i));
+			i = j-1;
+			if (strings.size() > j){
+				System.out.print(",");
+			}
+		}
+		System.out.println("");
 	}
 
 	public static void drawCard() {
@@ -60,14 +85,13 @@ public class Game {
 			expeditionDeck.removeCard(c);
 			hand.add(c);
 			System.out.println(c.getName() + " drawn");
-		}
-		else if (expeditionDiscardPile.getSize() > 0){
+		} else if (expeditionDiscardPile.getSize() > 0) {
 			System.out.println("The expedition deck is reshuffled.");
 			expeditionDeck = expeditionDiscardPile;
 			expeditionDeck.shuffle();
 			expeditionDiscardPile = new Deck<>();
 			drawCard();
-		}
+		}		
 	}
 
 	public static void discardHand() {
@@ -77,13 +101,18 @@ public class Game {
 		hand = new ArrayList<>();
 	}
 
+	public static void discardSpecificCard(ExpeditionCard c) {
+		hand.remove(c);
+		expeditionDiscardPile.addCard(c);
+	}
+
 	public static void setup() { // setup start of game
 		setRations(10);
 		setMorale(10);
 		appeal = 10;
 		InitialSetup.createDeck();
 		eventDeck = InitialSetup.createEventDeck();
-		for (int i = 0; i < 5; i++){
+		for (int i = 0; i < 5; i++) {
 			drawCard();
 		}
 		printState();
@@ -92,7 +121,7 @@ public class Game {
 	}
 
 	public static void gainAction() {
-		actions = +1;
+		actions = actions + 1;
 	}
 
 	public static void loseAction() {
@@ -103,7 +132,7 @@ public class Game {
 	}
 
 	public static void modifyActions(int change) {
-		actions = +change;
+		actions = actions + change;
 		if (actions < 0) {
 			actions = 0;
 		}
