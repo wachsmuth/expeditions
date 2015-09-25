@@ -53,14 +53,14 @@ public class InputLoop {
             i++;
         }
         System.out.println(question);
-        return cardArray.get(inputLoop(countries) - 1);
+        return cardArray.get(inputLoop(countries) - 2);
     }
     
     public static <T> T inputLoop(ArrayList<T> stuff) {
         Scanner inputScanner = new Scanner(System.in);
         System.out.println("Valid input is: ");
         for (int i = 0; i < stuff.size(); i++) {
-            System.out.println(i + " " + stuff.get(i));
+            System.out.println((i + 1) +" " + stuff.get(i));
         }
         int userInput;
         //  inputloop:
@@ -70,8 +70,8 @@ public class InputLoop {
                 String userInputRaw = inputScanner.nextLine();
                 userInput = Integer.parseInt(userInputRaw);
                 //Check for extended commands
-                if (userInput < stuff.size() && userInput >= 0) {
-                    return stuff.get(userInput);
+                if (userInput <= stuff.size() && userInput > 0) {
+                    return stuff.get(userInput-1);
                 }
                 System.out.println("Not on the list of permitted input."); //If wrong number
             } catch (NumberFormatException e) {

@@ -30,6 +30,10 @@ public class InitialSetup {
 		deck.addCard(new Respite());
 		deck.addCard(new Rodents());
 		deck.addCard(new Snakebite());
+		deck.addCard(new MoraleFalters());
+		deck.addCard(new Rodents());
+		
+		deck.shuffle();
 		return deck;
 	}
 	
