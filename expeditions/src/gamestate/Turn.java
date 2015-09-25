@@ -12,11 +12,13 @@ public class Turn {
 		// play hand
 		Game.setActions(1);
 		playActions();
+		Game.discardCardsOfTypeInPlay(CardType.ACTION);
 		if (Game.getRations() == 0){
 			//TODO
 		}
-		//change rations at end of turn
-		Game.changeRations(-1);
+		
+		Game.changeRations(-1); //change rations at end of turn
+		System.out.println("The expedition members consume 1 ration.");
 		Game.printState();
 		Game.discardHand();
 		System.out.println("Hand discarded");
@@ -44,7 +46,7 @@ public class Turn {
 			else {
 				ExpeditionCard c = possibleCards.get(userInput);
 				c.play();
-				Game.discardSpecificCard(c);
+				Game.addCardToPlay(c);
 				Game.modifyActions(-1);
 				Game.printState();
 			}

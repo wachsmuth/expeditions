@@ -40,8 +40,9 @@ public class Game {
 
 	public static void playEvent() {
 		EventCard c = drawFromEventDeck();
-		System.out.println("Event played: " + c.getName() + ": " + c.getDescription());
-		c.playEvent();		
+		System.out.println("Event played: " + c.getName() + ": "
+				+ c.getDescription());
+		c.playEvent();
 		eventDeck.removeCard(c);
 		eventDiscardPile.addCard(c);
 	}
@@ -51,28 +52,29 @@ public class Game {
 				+ " Appeal: " + appeal + " Travel: " + travel);
 	}
 
-	public static void printHand() { //prints entire contents of hand on a single line
+	public static void printHand() { // prints entire contents of hand on a
+										// single line
 		ArrayList<String> strings = new ArrayList<>();
 
 		for (ExpeditionCard c : hand) {
 			strings.add(c.getName());
 		}
-		Collections.sort(strings); //if multiples exist, print those
-		
+		Collections.sort(strings); // if multiples exist, print those
+
 		System.out.print("Your hand:");
-		for (int i = 0; i < strings.size(); i++){
+		for (int i = 0; i < strings.size(); i++) {
 			int j = i;
 			int count = 0;
-			while (j < strings.size() && strings.get(i).equals(strings.get(j))){
+			while (j < strings.size() && strings.get(i).equals(strings.get(j))) {
 				count++;
 				j++;
 			}
-			if (count > 1){
+			if (count > 1) {
 				System.out.print(" " + count + "x");
 			}
 			System.out.print(" " + strings.get(i));
-			i = j-1;
-			if (strings.size() > j){
+			i = j - 1;
+			if (strings.size() > j) {
 				System.out.print(",");
 			}
 		}
@@ -91,7 +93,7 @@ public class Game {
 			expeditionDeck.shuffle();
 			expeditionDiscardPile = new Deck<>();
 			drawCard();
-		}		
+		}
 	}
 
 	public static void discardHand() {
@@ -101,9 +103,29 @@ public class Game {
 		hand = new ArrayList<>();
 	}
 
+	public static void discardCardsOfTypeInPlay(CardType ct) {
+		ArrayList<ExpeditionCard> cardsToDiscard = new ArrayList<>();
+		for (ExpeditionCard e : cardsInPlay) {
+			if (e.getType() == ct) {
+				cardsToDiscard.add(e);
+				
+			}
+		}
+		for (ExpeditionCard e : cardsToDiscard) {
+				expeditionDiscardPile.addCard(e);
+				cardsInPlay.remove(e);
+
+		}
+	}
+
 	public static void discardSpecificCard(ExpeditionCard c) {
 		hand.remove(c);
 		expeditionDiscardPile.addCard(c);
+	}
+
+	public static void addCardToPlay(ExpeditionCard c) {
+		hand.remove(c);
+		cardsInPlay.add(c);
 	}
 
 	public static void setup() { // setup start of game
