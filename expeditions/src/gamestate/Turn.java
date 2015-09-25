@@ -16,6 +16,7 @@ public class Turn {
 		}
 		//change rations at end of turn
 		Game.changeRations(-1);
+		Game.printState();
 	}
 	
 	/*
