@@ -60,6 +60,14 @@ public class Game {
 		actions =+ actions;
 	}
 	
+	public static void getActions(){
+		return actions;
+	}
+	
+	public static void setActions(int a){
+		actions = max(0, a);
+	}
+	
 	public static void printActions(){
 		System.out.println("Actions: " + actions);
 	}
