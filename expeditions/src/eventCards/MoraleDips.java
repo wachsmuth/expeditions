@@ -3,21 +3,21 @@ package eventCards;
 import gamestate.EventCard;
 import gamestate.Game;
 
-public class MoraleFalters implements EventCard {
+public class MoraleDips implements EventCard {
 
 	@Override
 	public String getName() {
-		return "Morale Falters";
+		return "Morale Dips";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Morale -2.";
+		return "Morale -3.";
 	}
 
 	@Override
 	public void playEvent() {
-		Game.changeMorale(-2);
+		Game.changeMorale(-3);
 		
 	}
 
