@@ -13,4 +13,10 @@ public class Turn {
 		//change rations
 		Game.changeRations(-1);
 	}
+	
+	public static void playActions(){
+		while (Game.getActions > 0 && Game.getCardsOfTypeInHand(Action) > 0){
+			ArrayList<String> options = new ArrayList<>();
+		}
+	}
 }
