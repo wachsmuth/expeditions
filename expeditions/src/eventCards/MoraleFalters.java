@@ -7,17 +7,17 @@ public class MoraleFalters implements EventCard {
 
 	@Override
 	public String getName() {
-		return "Morale Falters";
+		return "Morale Dips";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Morale -2.";
+		return "Morale -3.";
 	}
 
 	@Override
 	public void playEvent() {
-		Game.changeMorale(-2);
+		Game.changeMorale(-3);
 		
 	}
 
