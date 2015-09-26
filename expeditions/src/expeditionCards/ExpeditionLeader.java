@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class ExpeditionLeader implements ExpeditionCard {
 
-	private String trash = "Trash a card on your hand.";
-	private String walk = "Gain 1 Walk card.";
-	private String rations = "+1 rations.";
-	private String appeal = "+1 appeal.";
-	private String morale = "+1 morale";
-	private String action = "+1 action.";
+	private final String trash = "Trash a card on your hand.";
+	private final String walk = "Gain 1 Walk card.";
+	private final String rations = "+1 rations.";
+	private final String appeal = "+1 appeal.";
+	private final String morale = "+1 morale";
+	private final String action = "+1 action.";
 
 	@Override
 	public String getName() {
