@@ -40,7 +40,7 @@ public class InputLoop {
     
     public static <T> int inputLoop(String question, ArrayList<T> stuff){
     	String[] arguments = new String[stuff.size()];
-    	arguments = stuff.toArray(arguments);
+    	arguments = stuff.toArray(arguments); 
     	System.out.println(question);
     	return inputLoop(arguments)-1;
     }

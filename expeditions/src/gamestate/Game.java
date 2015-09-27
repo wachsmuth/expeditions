@@ -23,6 +23,20 @@ public class Game {
 	public Game() {
 
 	}
+	
+	
+
+	public static ArrayList<ExpeditionCard> getCardsInPlay() {
+		return cardsInPlay;
+	}
+
+
+
+	public static void setCardsInPlay(ArrayList<ExpeditionCard> cardsInPlay) {
+		Game.cardsInPlay = cardsInPlay;
+	}
+
+
 
 	public static EventCard drawFromEventDeck() {
 		if (eventDeck.isEmpty()) {
@@ -87,7 +101,7 @@ public class Game {
 			ExpeditionCard c = expeditionDeck.getTopCard();
 			expeditionDeck.removeCard(c);
 			hand.add(c);
-			System.out.println(c.getName() + " drawn");
+			System.out.println("Card drawn: " + c.getName() + " - " + c.getDescription());
 		} else if (expeditionDiscardPile.getSize() > 0) {
 			System.out.println("The expedition deck is reshuffled.");
 			expeditionDeck = expeditionDiscardPile;
