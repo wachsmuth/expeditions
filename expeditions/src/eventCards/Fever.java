@@ -1,8 +1,8 @@
 package eventCards;
 
+import expeditionCards.Illness;
 import gamestate.EventCard;
 import gamestate.Game;
-import expeditionCards.Poison;
 
 public class Fever implements EventCard {
 
