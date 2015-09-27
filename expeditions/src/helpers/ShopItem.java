@@ -22,5 +22,9 @@ public class ShopItem {
 	public int getWeight() {
 		return weight;
 	}
+	
+	public ExpeditionCard getCharacter() {
+		return character;
+	}
 
 }
