@@ -33,12 +33,11 @@ public class Injury implements ExpeditionCard{
 	@Override
 	public String getDescription() {
 		if (severity == 0){
-			return "Replace this card with Moderate Poisoning.";
+			return "Roll a die. On a roll of 1-2, replace this card with Severe Injury.";
 		}
-		else if (severity == 1){
-			return "Replace this card with Severe Poisoning.";
+		else {
+			return "Roll a die. On a roll of 1-3, select one character from the discard pile. This character dies and is removed from the game.";
 		}
-		return "One character dies.";
 	}
 
 	@Override
