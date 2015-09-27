@@ -26,13 +26,23 @@ public class Purchase {
 
 	private static ShopItem chooseRandomItem(ShopBias bias) {
 		int totalSeed = 0;
+		ArrayList<ShopItem> fittingBias = new ArrayList<>();
 
 		for (ShopItem s : characters) {
-			totalSeed = totalSeed + s.getWeight();
+			if (bias == ShopBias.BOTH) {
+				totalSeed = totalSeed + s.getWeight();
+				fittingBias.add(s);
+			}
+			else {
+				if (bias == s.getBias() || s.getBias() == ShopBias.BOTH){
+					totalSeed = totalSeed + s.getWeight();
+					fittingBias.add(s);
+				}
+			}
 		}
 		int seed = (int) Math.ceil(Math.random() * totalSeed);
 		int count = 0;
-		for (ShopItem s : characters) {
+		for (ShopItem s : fittingBias) {
 			count = count + s.getWeight();
 			if (count >= seed) {
 				return s;
@@ -56,7 +66,8 @@ public class Purchase {
 			ArrayList<ExpeditionCard> possibleCards = shop;
 			ArrayList<String> options = new ArrayList<>();
 			for (ExpeditionCard ec : possibleCards) {
-				if (Game.getAppeal() >= ec.getCost()) { //ensure that we can afford it
+				if (Game.getAppeal() >= ec.getCost()) { // ensure that we can
+														// afford it
 					options.add(ec.getName() + " (" + ec.getCost() + ") "
 							+ " - " + ec.getDescription());
 				}
