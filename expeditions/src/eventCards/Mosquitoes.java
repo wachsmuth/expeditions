@@ -13,12 +13,11 @@ public class Mosquitoes implements EventCard {
 
 	@Override
 	public String getDescription() {
-		return "Gain 3 Illness.";
+		return "Gain 2 Illness.";
 	}
 
 	@Override
 	public void playEvent() {
-		Game.gainCard(new Illness());
 		Game.gainCard(new Illness());
 		Game.gainCard(new Illness());
 	}
