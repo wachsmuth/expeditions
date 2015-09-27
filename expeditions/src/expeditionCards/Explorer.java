@@ -4,16 +4,16 @@ import gamestate.ExpeditionCard;
 import gamestate.Game;
 import helpers.CardType;
 
-public class Hunter implements ExpeditionCard {
+public class Explorer implements ExpeditionCard {
 
 	@Override
 	public String getName() {
-		return "Hunter";
+		return "Explorer";
 	}
 
 	@Override
 	public String getDescription() {
-		return "+2 rations";
+		return "Gain a Walk card.";
 	}
 
 	@Override
@@ -23,17 +23,17 @@ public class Hunter implements ExpeditionCard {
 
 	@Override
 	public void play() {
-		Game.changeRations(2);
+		Game.gainCard(new Walk());
 	}
 
 	@Override
 	public int getCost() {
-		return 5;
+		return 4;
 	}
 
 	@Override
 	public ExpeditionCard create() {
-		return new Hunter();
+		return new Explorer();
 	}
 
 }
