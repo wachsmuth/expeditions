@@ -1,11 +1,15 @@
 package gamestate;
 
 import helpers.ShopBias;
+import eventCards.Fall;
+import eventCards.Fever;
 import eventCards.MoraleFalters;
+import eventCards.Mosquitoes;
 import eventCards.NativeVillage;
 import eventCards.Respite;
 import eventCards.Rodents;
 import eventCards.Snakebite;
+import eventCards.SpanishOutpost;
 import expeditionCards.ExpeditionLeader;
 import expeditionCards.Porter;
 import expeditionCards.Walk;
@@ -35,6 +39,16 @@ public class InitialSetup {
 		deck.addCard(new MoraleFalters());
 		deck.addCard(new Rodents());
 		deck.addCard(new NativeVillage());
+		deck.addCard(new Fall());
+		deck.addCard(new Fall());
+		deck.addCard(new Fall());
+		deck.addCard(new Fever());
+		deck.addCard(new Fever());
+		deck.addCard(new Fever());
+		deck.addCard(new Mosquitoes());
+		deck.addCard(new Mosquitoes());
+		deck.addCard(new NativeVillage());
+		deck.addCard(new SpanishOutpost());
 		
 		deck.shuffle();
 		return deck;
