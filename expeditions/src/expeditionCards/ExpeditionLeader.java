@@ -70,4 +70,10 @@ public class ExpeditionLeader implements ExpeditionCard {
 		return 8;
 	}
 
+	@Override
+	public ExpeditionCard create() {
+		return new ExpeditionLeader();
+		
+	}
+
 }

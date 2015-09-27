@@ -9,4 +9,6 @@ public interface ExpeditionCard extends Card{
 	public void play();
 	
 	public int getCost();
+	
+	public ExpeditionCard create();
 }

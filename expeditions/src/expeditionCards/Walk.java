@@ -31,4 +31,9 @@ public class Walk implements ExpeditionCard{
 		return 0;
 	}
 
+	@Override
+	public ExpeditionCard create() {
+		return new Walk();
+	}
+
 }

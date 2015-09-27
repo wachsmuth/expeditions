@@ -66,4 +66,9 @@ public class Poison implements ExpeditionCard{
 		return 0;
 	}
 
+	@Override
+	public ExpeditionCard create() {
+		return new Poison();
+	}
+
 }

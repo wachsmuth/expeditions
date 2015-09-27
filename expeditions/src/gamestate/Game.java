@@ -147,6 +147,7 @@ public class Game {
 		setMorale(10);
 		appeal = 10;
 		InitialSetup.createDeck();
+		InitialSetup.createPurchases();
 		eventDeck = InitialSetup.createEventDeck();
 		for (int i = 0; i < 5; i++) {
 			drawCard();

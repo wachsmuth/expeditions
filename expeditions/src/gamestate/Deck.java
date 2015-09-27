@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class Deck<E> implements Iterable{
+public class Deck<E> implements Iterable<E>{
 
     private final ArrayList<E> cards = new ArrayList<>();
 
@@ -53,7 +53,7 @@ public class Deck<E> implements Iterable{
     }
 
 	@Override
-	public Iterator iterator() {
+	public Iterator<E> iterator() {
 		return cards.listIterator();
 	}
 

@@ -1,6 +1,8 @@
 package gamestate;
 
+import helpers.ShopBias;
 import eventCards.MoraleFalters;
+import eventCards.NativeVillage;
 import eventCards.Respite;
 import eventCards.Rodents;
 import eventCards.Snakebite;
@@ -32,9 +34,13 @@ public class InitialSetup {
 		deck.addCard(new Snakebite());
 		deck.addCard(new MoraleFalters());
 		deck.addCard(new Rodents());
+		deck.addCard(new NativeVillage());
 		
 		deck.shuffle();
 		return deck;
 	}
 	
+	public static void createPurchases(){
+		Purchase.addShopItem(ShopBias.NATIVE, 20, new Porter());
+	}
 }

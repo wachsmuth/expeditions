@@ -1,16 +1,14 @@
 package gamestate;
 
-import helpers.CardType;
 import helpers.InputLoop;
 import helpers.ShopBias;
 import helpers.ShopItem;
 
 import java.util.ArrayList;
-import java.util.TreeSet;
 
 public class Purchase {
 
-	private final static TreeSet<ShopItem> characters = new TreeSet<>();
+	private final static ArrayList<ShopItem> characters = new ArrayList<>();
 	private static boolean shopTurn = false;
 	private static ArrayList<ExpeditionCard> shop = new ArrayList<>();
 
@@ -19,10 +17,11 @@ public class Purchase {
 		characters.add(new ShopItem(bias, weight, character));
 	}
 
-	public static void chooseRandomItems(ShopBias bias, int amount) {
-		for (int i = 0;i < amount;i++){
+	public static void shopRandomItems(ShopBias bias, int amount) {
+		for (int i = 0; i < amount; i++) {
 			shop.add(chooseRandomItem(bias).getCharacter());
 		}
+		buyStuff();
 	}
 
 	private static ShopItem chooseRandomItem(ShopBias bias) {
@@ -35,16 +34,8 @@ public class Purchase {
 		int count = 0;
 		for (ShopItem s : characters) {
 			count = count + s.getWeight();
-			if (count > seed) {
-				Class cls = s.getClass();
-				try {
-					ShopItem obj = (ShopItem) cls.newInstance();
-					return obj;
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
+			if (count >= seed) {
+				return s;
 			}
 		}
 		// This code should never be reached
@@ -59,21 +50,27 @@ public class Purchase {
 		Purchase.shopTurn = shopTurn;
 	}
 
-	public static void buyStuff(){
-		while (shop.size() > 0){
+	public static void buyStuff() {
+		boolean shoppingTime = true;
+		while (shop.size() > 0 && shoppingTime) {
 			ArrayList<ExpeditionCard> possibleCards = shop;
 			ArrayList<String> options = new ArrayList<>();
-			for (ExpeditionCard ec : possibleCards){
-				options.add(ec.getName() + " (" + ec.getCost() + ") "+ " - " +ec.getDescription());
+			for (ExpeditionCard ec : possibleCards) {
+				if (Game.getAppeal() >= ec.getCost()) { //ensure that we can afford it
+					options.add(ec.getName() + " (" + ec.getCost() + ") "
+							+ " - " + ec.getDescription());
+				}
 			}
-			options.add("End actions.");
-			int userInput = InputLoop.inputLoop("Choose a card to purchase or end actions.", options);
-			if (userInput == options.size()-1){
-				Game.setActions(0);
-			}
-			else {
+			options.add("End buy phase.");
+			int userInput = InputLoop.inputLoop(
+					"Choose a card to purchase or end buy phase.", options);
+			if (userInput == options.size() - 1) {
+				shoppingTime = false;
+			} else {
 				ExpeditionCard c = possibleCards.get(userInput);
-				Game.gainCard(c);
+				Game.changeAppeal(-c.getCost());
+				possibleCards.remove(c);
+				Game.gainCard(c.create());
 				Game.printState();
 			}
 		}

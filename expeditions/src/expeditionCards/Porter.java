@@ -32,4 +32,9 @@ public class Porter implements ExpeditionCard {
 		return 1;
 	}
 
+	@Override
+	public ExpeditionCard create() {
+		return new Porter();
+	}
+
 }
